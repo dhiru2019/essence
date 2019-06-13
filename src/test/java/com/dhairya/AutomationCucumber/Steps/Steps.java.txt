@@ -1,0 +1,90 @@
+package steps;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import com.thoughtworks.selenium.webdriven.commands.Click;
+
+import cucumber.api.DataTable;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class StepsFile {
+
+	public static WebDriver driver;
+	public String url;
+	static{
+		driver = new FirefoxDriver();
+	}
+	
+@Given("^the url ‘https://www\\.apple\\.com/uk/’$")
+public void the_url_https_www_apple_com_uk(String url) {
+	this.url = url;
+    
+}
+
+@Given("^I go to the url$")
+public void i_go_to_the_url() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	driver.manage().window().maximize();
+	driver.get(this.url);
+	
+}
+
+@When("^I choose a MacBook Pro with the following {option} and {specifications}$")
+public void i_choose_a_MacBook_Pro_with_the_following_features_and_accessories(String options, String specifications) throws Throwable {
+  // click on mac tab - Dynamic xpath shoule be created but as of now static is applied.
+	driver.findElement(By.xpath("//*[@id="ac-globalnav"]/div/ul[2]/li[2]/a")).click();
+	
+	// Click on Mac book pro tab
+	
+	driver.findElement(By.xpath("//*[@id="chapternav"]/div/ul/li[3]/a/figure")).click();
+	
+	driver.findElement(By.xpath("//*[@id="ac-localnav"]/div/div[2]/div[2]/div[2]/div[2]/a")).click();
+	
+	// we can create objects in some other class rather than hard code it.
+	
+	driver.findElement(By.xpath("//*[@id="15-inch-label"]")).click();
+	
+	driver.findElement(By.xpath("//*[@id="configuration-form"]/div/span/button")).click();
+	
+	
+}
+
+@Then("^I can place an order for it\\.$")
+public void i_can_place_an_order_for_it() {
+    // Write code here that turns the phrase above into concrete actions
+
+}
+
+@Given("^when I choose the following items:$")
+public void when_I_choose_the_following_items(DataTable arg1) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    // For automatic transformation, change DataTable to one of
+    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
+    // E,K,V must be a scalar (String, Integer, Date, enum etc)
+    throw new PendingException();
+}
+
+@When("^I proceed to the checkout$")
+public void i_proceed_to_the_checkout() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@Then("^a total price of £(\\d+)\\.(\\d+) will be displayed$")
+public void a_total_price_of_£_will_be_displayed(int arg1, int arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@Then("^£(\\d+)\\.(\\d+) will be listed for VAT\\.VAT$")
+public void £_will_be_listed_for_VAT_VAT(int arg1, int arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+}
